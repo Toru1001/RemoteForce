@@ -1,3 +1,7 @@
+<?php
+include "dbConnect.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +17,19 @@
 
 <body>
   <div class="body p-3">
+
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000"
+      style="position: absolute; top: 0; right: 0;">
+      <div class="toast-header">
+        <strong class="me-auto">Remote Force</strong>
+        <small>Just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+      </div>
+    </div>
+
+
     <section class="pageTitle1 p-3">
       <h2>New Project</h2>
     </section>
@@ -21,7 +38,7 @@
     <div class="container p-3">
       <div class="top-border-box">
 
-        <form class="row g-3">
+        <form id="projectForm" class="projectForm row g-3" name="projectForm">
           <div class="col-md-6">
             <label for="validationDefault01" class="form-label">Project Name</label>
             <input name="project_name" type="text" class="form-control" id="validationDefault01" required>
@@ -50,19 +67,34 @@
             <select class="form-select" id="projectmanager" name="projectmanager" value="Select Project Manager"
               required>
               <option value="" disabled selected>Select Project Manager</option>
-              <option value="1">Manager 1</option>
-              <option value="2">Manager 2</option>
-              <option value="3">Manager 3</option>
+              <?php
+              $sql = "SELECT * FROM employees WHERE position = 'Project Manager'";
+              $result = $conn->query($sql);
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  echo "<option value='" . $row["emp_id"] . "'>" . $row["empl_firstname"] . " " . $row["empl_lastname"] . "</option>";
+                }
+              } else {
+                echo "<option value='' disabled>No project managers available</option>";
+              }
+              ?>
             </select>
           </div>
           <div class="col-md-6">
             <label for="members" class="form-label">Members</label>
             <select class="form-select" name="members" id="members" multiple>
-              <option value="1">Afghanistan</option>
-              <option value="2">Australia</option>
-              <option value="3">Germany</option>
-              <option value="4">Canada</option>
-              <option value="5">Russia</option>
+              <?php
+              $sql = "SELECT * FROM employees";
+              $result = $conn->query($sql);
+
+              if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                  echo "<option value='" . $row["emp_id"] . "'>" . $row["empl_firstname"] . " " . $row["empl_lastname"] . "</option>";
+                }
+              } else {
+                echo "<option value='' disabled>No members available</option>";
+              }
+              ?>
             </select>
           </div>
 
@@ -98,12 +130,14 @@
               style="min-height: 150px;">
               <p>Start writing here...</p>
             </div>
+            <input type="hidden" name="projectDescription" id="hiddenDescription">
           </div>
 
           <div class="col-12 p-4">
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button id="submitBtn" class="btn btn-primary" type="button">Submit</button>
           </div>
         </form>
+
       </div>
     </div>
   </div>
@@ -123,48 +157,52 @@
       }
     });
   </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    function formatDoc(cmd, value = null) {
-      if (value) {
-        document.execCommand(cmd, false, value);
-      } else {
-        document.execCommand(cmd);
-      }
-    }
+    $(document).ready(function () {
+      $('#submitBtn').on('click', function () {
+        var projectName = $('input[name="project_name"]').val();
+        var status = $('select[name="status"]').val();
+        var startDate = $('input[name="startdate"]').val();
+        var endDate = $('input[name="enddate"]').val();
+        var projectManager = $('select[name="projectmanager"]').val();
+        var projectDescription = $('#content').html();
 
-    var content = document.getElementById('content');
+        var encodedDescription = btoa(projectDescription);
+        var members = $('#members').val();
 
-    content.addEventListener('focus', function () {
-      if (content.innerText.trim() === 'Start writing here...') {
-        content.innerText = '';
-      }
-    });
-
-    content.addEventListener('blur', function () {
-      if (content.innerText.trim() === '') {
-        content.innerHTML = '<p>Start writing here...</p>';
-      }
-    });
-
-    content.addEventListener('mouseenter', function () {
-      const a = content.querySelectorAll('a');
-      a.forEach(item => {
-        item.addEventListener('mouseenter', function () {
-          content.setAttribute('contenteditable', false);
-          item.target = '_blank';
-        })
-        item.addEventListener('mouseleave', function () {
-          content.setAttribute('contenteditable', true);
-        })
-      })
-    });
-
-    content.addEventListener('keydown', function (event) {
-      if (event.key === 'Backspace' && (this.textContent.trim() === '')) {
-        event.preventDefault();
-      }
+        $.ajax({
+          url: 'saveProject.php',
+          type: 'POST',
+          data: {
+            project_name: projectName,
+            status: status,
+            startdate: startDate,
+            enddate: endDate,
+            projectmanager: projectManager,
+            projectDescription: encodedDescription,
+            members: members
+          },
+          success: function (response) {
+            $('.toast-body').html('You created a new PROJECT!');
+            $('.toast').toast('show');
+            setTimeout(function () {
+              window.location.href = 'main.php';
+            }, 1500);
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            console.error(textStatus, errorThrown);
+          }
+        });
+      });
     });
   </script>
+
+
+
+
+  <script src="containers/newProject.js"> </script>
 </body>
 
 </html>

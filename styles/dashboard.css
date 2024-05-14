@@ -39,3 +39,25 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.description {
+    color: lightgray;
+    font-style: italic;
+    margin-top: 5px;
+  }
+  .project-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  .project-cell {
+    padding: 10px;
+  }
+
+.project-column {
+	width: 30%;
+	word-break: break-word;
+}
+
+.text-wrap {
+	word-break: break-word;
+	white-space: normal;
+}

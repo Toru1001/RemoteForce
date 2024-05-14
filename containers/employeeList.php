@@ -10,6 +10,16 @@
 </head>
 
 <body>
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000"
+        style="position: absolute; top: 0; right: 0;">
+        <div class="toast-header">
+            <strong class="me-auto">Remote Force</strong>
+            <small>Just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+        </div>
+    </div>
     <div class="body p-3">
         <section class="pageTitle1 p-3">
             <h2>Employees</h2>
@@ -72,11 +82,11 @@
                 </table>
             </div>
         </section>
-        </section>
+
     </div>
 
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editModalLabel">Edit User</h5>

@@ -7,7 +7,8 @@ $(document).ready(function () {
                 url: 'dbuserDelete.php',
                 data: { emp_id: empId },
                 success: function (response) {
-                    alert(response);
+                    $('.toast-body').html('You removed an Employee');
+                    $('.toast').toast('show');
                     location.reload();
                 },
                 error: function (xhr, status, error) {
@@ -61,7 +62,8 @@ $(document).ready(function () {
                 password: password
             },
             success: function (response) {
-                alert(response);
+                $('.toast-body').html('User Updated!');
+            $('.toast').toast('show');
                 location.reload();
             },
             error: function (xhr, status, error) {

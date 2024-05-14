@@ -46,7 +46,7 @@
               <a href="?page=newProject" class="sidebar-link">Create New Project</a>
             </li>
             <li class="sidebar-item">
-              <a href="#" class="sidebar-link">View Projects</a>
+              <a href="?page=projects" class="sidebar-link">View Projects</a>
             </li>
           </ul>
         </li>
@@ -116,11 +116,13 @@
           if ($page === 'dashboard') {
             include ('containers/dashboard.php');
           } else if ($page === 'newUser') {
-            include ('containers/newUser.html');
+            include ('containers/newUser.php');
           } else if ($page === 'employeeList') {
             include ('containers/employeeList.php');
           } else if ($page === 'newProject') {
             include ('containers/newProject.php');
+          } else if ($page === 'projects') {
+            include ('containers/projects.php');
           }
         } else {
           include ('containers/dashboard.php');
