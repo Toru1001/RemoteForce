@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['position'])) {
+  header('Location: loginform.php');
+  exit();
+}
+
+$userId = $_SESSION['user_id'];
+$userRole = $_SESSION['position'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,7 +102,7 @@
         </li>
       </ul>
       <div class="sidebar-footer">
-        <a href="#" class="sidebar-link">
+        <a href="?page=login" class="sidebar-link">
           <i class="lni lni-exit"></i>
           <span>Logout</span>
         </a>
@@ -123,6 +136,11 @@
             include ('containers/newProject.php');
           } else if ($page === 'projects') {
             include ('containers/projects.php');
+          } else if ($page === 'login') {
+            unset($userId);
+            unset($userRole);
+            session_destroy();
+            header('location: loginform.php');
           }
         } else {
           include ('containers/dashboard.php');

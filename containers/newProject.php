@@ -50,7 +50,7 @@ include "dbConnect.php";
               <option value="" disabled selected>Select Status</option>
               <option value="Active">Active</option>
               <option value="Completed">Completed</option>
-              <option value="On-hold">On-hold</option>
+              <option value="On Hold">On-hold</option>
             </select>
           </div>
 

@@ -177,45 +177,6 @@
                             <td>In-Progress</td>
                             <td><button type="button" class="btn btn-outline-primary">View</button></td>
                         </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Create Mods</td>
-                            <td>
-                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25"
-                                    aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-primary" style="width: 50%">50%</div>
-                                </div>
-                            </td>
-                            <td>05/13/2024</td>
-                            <td>In-Progress</td>
-                            <td><button type="button" class="btn btn-outline-primary">View</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Create Mods</td>
-                            <td>
-                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25"
-                                    aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-primary" style="width: 50%">50%</div>
-                                </div>
-                            </td>
-                            <td>05/13/2024</td>
-                            <td>In-Progress</td>
-                            <td><button type="button" class="btn btn-outline-primary">View</button></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Create Mods</td>
-                            <td>
-                                <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25"
-                                    aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-primary" style="width: 50%">50%</div>
-                                </div>
-                            </td>
-                            <td>05/13/2024</td>
-                            <td>In-Progress</td>
-                            <td><button type="button" class="btn btn-outline-primary">View</button></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

@@ -51,7 +51,7 @@ include "dbConnect.php";
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $content = base64_decode($row['proj_description']);
                                 $plainTextContent = strip_tags($content);
-                                $shortContent = substr($plainTextContent, 0, 200) . '...';
+                                $shortContent = substr($plainTextContent, 0, 130) . '...';
                                 echo "<tr>";
                                 echo "<td>" . $row['project_id'] . "</td>";
                                 echo "<td class='project-column'><div><div class='fw-bold fs-5'>" . $row['project_name'] . "</div>
@@ -108,7 +108,7 @@ include "dbConnect.php";
                                     <option value="" disabled selected>Select Status</option>
                                     <option value="Active">Active</option>
                                     <option value="Completed">Completed</option>
-                                    <option value="On-hold">On-hold</option>
+                                    <option value="On Hold">On-hold</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
@@ -156,8 +156,9 @@ include "dbConnect.php";
 
 
                                 </div>
-                                <div class="textArea form-control border p-3" contenteditable="true" id="projcontent"
-                                    spellcheck="false" style="min-height: 150px;"></div>
+                                <div class="textArea border p-3" contenteditable="true" spellcheck="false"
+                                    style="min-height: 150px;" id="projcontent">
+                                </div>
                                 <input type="hidden" name="proj_description" id="hiddenDescription">
                             </div>
                         </div>

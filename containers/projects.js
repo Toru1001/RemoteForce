@@ -48,7 +48,7 @@ $('#updateBtn').click(function () {
     var endDate = $('#editEndDate').val();
     var projectManager = $('#projectmanager').val();
     var projectDescription = $('#projcontent').html();
-    $('#hiddenDescription').val(projectDescription); // Update hidden input with the project description
+    $('#hiddenDescription').val(projectDescription);
 
 
     $.ajax({
@@ -66,7 +66,7 @@ $('#updateBtn').click(function () {
         success: function (response) {
             alert('Project updated successfully.');
             $('#projeditModal').modal('hide');
-            location.reload(); // Reload the page to reflect the changes
+            location.reload();
         },
         error: function (xhr, status, error) {
             console.error(xhr.responseText);
