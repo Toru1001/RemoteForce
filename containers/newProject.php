@@ -84,7 +84,7 @@ include "dbConnect.php";
             <label for="members" class="form-label">Members</label>
             <select class="form-select" name="members" id="members" multiple>
               <?php
-              $sql = "SELECT * FROM employees";
+              $sql = "SELECT * FROM employees WHERE position='Employee'";
               $result = $conn->query($sql);
 
               if ($result->num_rows > 0) {

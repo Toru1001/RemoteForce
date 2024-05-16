@@ -1,6 +1,15 @@
 .separator{
-    border-bottom: 3px solid #60b1f3; 
+    border-bottom: 3px solid #004b55; 
     padding-bottom: 5px; 
+  }
+
+  h1{
+    color: #a7a7a7;
+  }
+
+  h2{
+      color: #a7a7a7;
+    
   }
 
   .body .pageTitle h1{
@@ -32,7 +41,7 @@
 }
 
 .top-border-box {
-  border-top: 5px solid #007bff; 
+  border-top: 5px solid #004b55; 
   border-radius: 0.25rem;
   padding: 1rem;
   background-color: #f8f9fa;
@@ -60,4 +69,25 @@
 .text-wrap {
 	word-break: break-word;
 	white-space: normal;
+}
+
+.desc{
+  margin-top: -3px;
+}
+
+.member-pill {
+  background-color: #007bff;
+  color: white;
+  border-radius: 20px;
+  padding: 5px 10px;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  font-size: small;
+}
+
+.line {
+  display: inline-block;
+  border-bottom: 1px solid rgb(56, 56, 255); 
+  padding-bottom: 0px; 
 }

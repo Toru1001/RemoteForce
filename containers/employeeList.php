@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/dashboard.css">
 </head>
 
 <body>
@@ -26,15 +27,16 @@
         </section>
         <div class="separator"></div>
 
-        <nav class="navbar bg-body-tertiary p-3">
-            <div class="container-fluid d-flex align-items-center">
-                <button class="adbtn btn btn-outline-success p-2" type="button"
-                    onclick="window.location.href='main.php?page=newUser'">Add New Employee</button>
+        <nav class="navbar mt-2 mr-3">
+            <div class="container-fluid d-flex align-items-center space-in-between">
+                <div></div>
+                <button class="adbtn btn btn-outline-primary btn-sm mb-0" type="button"
+                    onclick="window.location.href='main.php?page=newUser'">+ New Employee</button>
             </div>
         </nav>
 
 
-        <section class="p-4">
+        <section class="ml-4 mr-4">
             <div class="table-responsive">
                 <table class="table datatable">
                     <thead class="thead-dark">

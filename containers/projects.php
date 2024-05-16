@@ -10,7 +10,6 @@ include "dbConnect.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/dashboard.css">
-    <!-- Include Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -66,7 +65,7 @@ include "dbConnect.php";
                                   Action
                                 </button>
                                 <ul class='dropdown-menu'>
-                                  <li><a id = 'projviewbtn' class='projviewbtn dropdown-item' href='#' data-projId=" . $row['project_id'] . ">View</a></li>
+                                  <li><a id = 'projviewbtn' class='projviewbtn dropdown-item' href='?page=viewproject&id=" . base64_encode($row['project_id']) . "' data-projId=" . $row['project_id'] . ">View</a></li>
                                   <li><hr class='dropdown-divider'></li>
                                   <li><a id = 'projeditbtn'  class='projeditbtn dropdown-item' href='#' data-projId=" . $row['project_id'] . ">Edit</a></li>
                                 </ul>

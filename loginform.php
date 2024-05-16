@@ -4,42 +4,33 @@ include 'dbConnect.php';
 
 
 if (isset($_POST['submit'])) {
-    $response = array('success' => false, 'message' => '');
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $role = $_POST['position'];
-        $stmt = $conn->prepare("SELECT emp_id, position, password FROM employees WHERE email = ?");
+        $stmt = $conn->prepare("SELECT emp_id, password FROM employees WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows == 1) {
-            $stmt->bind_result($emp_id, $user_role, $hashed_password);
+            $stmt->bind_result($emp_id, $hashed_password);
             $stmt->fetch();
 
             if (password_verify($password, $hashed_password)) {
-                if ($role === $user_role) {
-                    $_SESSION['user_id'] = $emp_id;
-                    $_SESSION['position'] = $user_role;
-                    $userId = $_SESSION['user_id'];
-                    $userRole = $_SESSION['position'];
-                    header('Location: main.php');
-                } else {
-                    $response['message'] = "Invalid role specified.";
-                }
+                $_SESSION['user_id'] = $emp_id;
+                $userId = $_SESSION['user_id'];
+                header('Location: main.php');
             } else {
-                $response['message'] = "Invalid email or password.";
+                $message['message'] = "Invalid email or password.";
             }
         } else {
-            $response['message'] = "Invalid email or password.";
+            $message['message'] = "Invalid email or password.";
         }
 
         $stmt->close();
         $conn->close();
     }
 
-    echo json_encode($response);
 }
 ?>
 
@@ -91,14 +82,7 @@ if (isset($_POST['submit'])) {
                         <i class="fas fa-lock"></i>
                         <input type="password" name="password" placeholder="Password" required>
                     </div>
-                    <div class="mt-3 col-md-6">
-                        <label for="role" class="form-label">Position</label>
-                        <select class="form-select" id="position" name="position" required>
-                            <option value="" disabled selected>Select Position</option>
-                            <option value="Administrator">Admin</option>
-                            <option value="Employee">Employee</option>
-                        </select>
-                    </div>
+
                     <input name="submit" type="submit" value="Login" class="btn solid">
                 </form>
 

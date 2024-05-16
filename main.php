@@ -1,13 +1,12 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['position'])) {
+if (!isset($_SESSION['user_id'])) {
   header('Location: loginform.php');
   exit();
 }
 
 $userId = $_SESSION['user_id'];
-$userRole = $_SESSION['position'];
 
 ?>
 
@@ -136,6 +135,8 @@ $userRole = $_SESSION['position'];
             include ('containers/newProject.php');
           } else if ($page === 'projects') {
             include ('containers/projects.php');
+          } else if ($page === 'viewproject') {
+            include ('containers/viewProject.php');
           } else if ($page === 'login') {
             unset($userId);
             unset($userRole);

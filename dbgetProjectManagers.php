@@ -1,7 +1,7 @@
 <?php
 include "dbConnect.php";
 
-$sql = "SELECT emp_id, empl_firstname, empl_lastname FROM employees";
+$sql = "SELECT emp_id, empl_firstname, empl_lastname FROM employees WHERE position = 'Project Manager'";
 $result = $conn->query($sql);
 
 $managers = array();
