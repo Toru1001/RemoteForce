@@ -91,3 +91,22 @@
   border-bottom: 1px solid rgb(56, 56, 255); 
   padding-bottom: 0px; 
 }
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.textArea {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 10px;
+  min-height: 150px;
+}
+
+.text-wrap {
+  word-wrap: break-word;
+}
+
+.deletebtn{
+  color: rgb(226, 0, 0);
+}

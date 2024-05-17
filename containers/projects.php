@@ -1,7 +1,3 @@
-<?php
-include "dbConnect.php";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +38,7 @@ include "dbConnect.php";
                                    CONCAT(e.empl_firstname, ' ', e.empl_lastname) AS project_manager_name, 
                                    p.project_status, p.proj_description 
                                 FROM projects p 
-                                INNER JOIN employees e ON p.project_manager = e.emp_id";
+                                LEFT JOIN employees e ON p.project_manager = e.emp_id";
 
                         $result = mysqli_query($conn, $sql);
 
@@ -59,15 +55,34 @@ include "dbConnect.php";
                                 echo "<td>" . date('M d, Y', strtotime($row['start_date'])) . "</td>";
                                 echo "<td>" . date('M d, Y', strtotime($row['end_date'])) . "</td>";
                                 echo "<td>" . $row['project_manager_name'] . "</td>";
-                                echo "<td>" . $row['project_status'] . "</td>";
+                                echo "<td>";
+                                $stats = htmlspecialchars($row['project_status']);
+                                $badgeClass = '';
+                                switch ($stats) {
+                                    case 'Active':
+                                        $badgeClass = 'bg-primary';
+                                        break;
+                                    case 'Completed':
+                                        $badgeClass = 'bg-success';
+                                        break;
+                                    case 'On Hold':
+                                        $badgeClass = 'bg-warning';
+                                        break;
+                                    default:
+                                        $badgeClass = 'bg-secondary';
+                                        break;
+                                }
+                                echo "<span class='badge rounded-pill $badgeClass'>$stats</span>";
+                                echo "</td>";
                                 echo "<td><div class='btn-group'>
                                 <button type='button' class='btn btn-outline-secondary dropdown-toggle' data-bs-toggle='dropdown' aria-expanded='false'>
                                   Action
                                 </button>
                                 <ul class='dropdown-menu'>
-                                  <li><a id = 'projviewbtn' class='projviewbtn dropdown-item' href='?page=viewproject&id=" . base64_encode($row['project_id']) . "' data-projId=" . $row['project_id'] . ">View</a></li>
+                                  <li><a id='projviewbtn' class='projviewbtn dropdown-item' href='?page=viewproject&id=" . base64_encode($row['project_id']) . "' data-projId='" . $row['project_id'] . "'>View</a></li>
+                                  <li><a id='projeditbtn' class='projeditbtn dropdown-item' href='#' data-projId='" . $row['project_id'] . "'>Edit</a></li>
                                   <li><hr class='dropdown-divider'></li>
-                                  <li><a id = 'projeditbtn'  class='projeditbtn dropdown-item' href='#' data-projId=" . $row['project_id'] . ">Edit</a></li>
+                                  <li><a id='projdeletebtn' class='projdeletebtn text-danger dropdown-item' href='#' data-projId='" . $row['project_id'] . "'>Delete</a></li>
                                 </ul>
                               </div>
                                   </td>";
@@ -152,12 +167,9 @@ include "dbConnect.php";
                                     <button class="btn btn-light" type="button"
                                         onclick="formatDoc('insertUnorderedList')"><i
                                             class='bx bx-list-ul'></i></button>
-
-
                                 </div>
                                 <div class="textArea border p-3" contenteditable="true" spellcheck="false"
-                                    style="min-height: 150px;" id="projcontent">
-                                </div>
+                                    style="min-height: 150px;" id="projcontent"></div>
                                 <input type="hidden" name="proj_description" id="hiddenDescription">
                             </div>
                         </div>
@@ -171,10 +183,41 @@ include "dbConnect.php";
         </div>
     </div>
 
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('.table').addEventListener('click', function (event) {
+                if (event.target.classList.contains('projdeletebtn')) {
+                    var projectId = event.target.getAttribute('data-projId');
+
+                    if (confirm('Are you sure you want to delete this project?')) {
+                        fetch('dbdeleteProject.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ project_id: projectId })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.success) {
+                                    alert('Project deleted successfully');
+                                    location.reload();
+                                } else {
+                                    alert('Error deleting project: ' + data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('An error occurred while deleting the project.');
+                            });
+                    }
+                }
+            });
+        });
+
+    </script>
     <script src="containers/projects.js"></script>
 </body>
 

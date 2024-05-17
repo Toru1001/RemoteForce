@@ -87,6 +87,7 @@ body, html {
 
 #sidebar:not(.expand) .sidebar-logo,
 #sidebar:not(.expand) a.sidebar-link span {
+    width: 20%;
     display: none;
 }
 

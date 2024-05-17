@@ -63,18 +63,12 @@ $userId = $_SESSION['user_id'];
           </ul>
         </li>
         <li class="sidebar-item">
-          <a href="#" class="sidebar-link">
+          <a href="?page=task" class="sidebar-link">
             <i class="lni lni-agenda"></i>
             <span>Task</span>
           </a>
         </li>
 
-        <li class="sidebar-item">
-          <a href="#" class="sidebar-link">
-            <i class="lni lni-popup"></i>
-            <span>Report</span>
-          </a>
-        </li>
 
         <li class="sidebar-item">
           <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#multi-two"
@@ -92,12 +86,6 @@ $userId = $_SESSION['user_id'];
           </ul>
         </li>
 
-        </li>
-        <li class="sidebar-item">
-          <a href="#" class="sidebar-link">
-            <i class="lni lni-cog"></i>
-            <span>Setting</span>
-          </a>
         </li>
       </ul>
       <div class="sidebar-footer">
@@ -137,6 +125,8 @@ $userId = $_SESSION['user_id'];
             include ('containers/projects.php');
           } else if ($page === 'viewproject') {
             include ('containers/viewProject.php');
+          } else if ($page === 'task') {
+            include ('containers/task.php');
           } else if ($page === 'login') {
             unset($userId);
             unset($userRole);

@@ -5,7 +5,7 @@ $projId = $_POST['proj_id'];
 
 $sql = "SELECT p.project_name, p.start_date, p.end_date, p.project_manager, p.project_status, p.proj_description 
         FROM projects p 
-        INNER JOIN employees e ON p.project_manager = e.emp_id
+        LEFT JOIN employees e ON p.project_manager = e.emp_id
         WHERE p.project_id = ?";
 
 $stmt = mysqli_prepare($conn, $sql);
