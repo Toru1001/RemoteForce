@@ -7,9 +7,11 @@ $(document).ready(function () {
                 url: 'dbuserDelete.php',
                 data: { emp_id: empId },
                 success: function (response) {
-                    $('.toast-body').html('You removed an Employee');
-                    $('.toast').toast('show');
-                    location.reload();
+                    $('.toast-body').html('You removed an Employee!');
+            $('.toast').toast('show');
+            setTimeout(function () {
+              location.reload();
+            }, 1500);
                 },
                 error: function (xhr, status, error) {
                     console.error(xhr.responseText);

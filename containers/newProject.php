@@ -38,7 +38,7 @@ include "dbConnect.php";
     <div class="container p-3">
       <div class="top-border-box">
 
-        <form id="projectForm" class="projectForm row g-3" name="projectForm">
+        <form id="projectForm" class="projectForm row g-3 needs-validation" name="projectForm">
           <div class="col-md-6">
             <label for="validationDefault01" class="form-label">Project Name</label>
             <input name="project_name" type="text" class="form-control" id="validationDefault01" required>

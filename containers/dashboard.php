@@ -6,7 +6,7 @@ $resultProjects = mysqli_query($conn, $sqlProjects);
 $rowProjects = mysqli_fetch_assoc($resultProjects);
 $totalProjects = $rowProjects['total_projects'];
 
-$sqlEmployees = "SELECT COUNT(*) AS total_employees FROM employees";
+$sqlEmployees = "SELECT COUNT(*) AS total_employees FROM employees WHERE position = 'Employee' OR position = 'Project Manager' ";
 $resultEmployees = mysqli_query($conn, $sqlEmployees);
 $rowEmployees = mysqli_fetch_assoc($resultEmployees);
 $totalEmployees = $rowEmployees['total_employees'];
@@ -27,8 +27,12 @@ $sqlProjects = "SELECT p.project_id, p.project_name, p.start_date, p.end_date, p
                 FROM projects p
                 LEFT JOIN tasks t ON p.project_id = t.project_id
                 GROUP BY p.project_id";
-
 $resultProjects = mysqli_query($conn, $sqlProjects);
+
+$sqlAdmin = "SELECT empl_firstname, empl_lastname FROM employees WHERE position = 'Administrator'";
+$resultAdmin = mysqli_query($conn, $sqlAdmin);
+$rowAdmin = mysqli_fetch_assoc($resultAdmin);
+$adminName = $rowAdmin['empl_firstname'] . ' ' . $rowAdmin['empl_lastname'];
 
 ?>
 
@@ -51,7 +55,7 @@ $resultProjects = mysqli_query($conn, $sqlProjects);
         <div class="separator"></div>
 
         <section class="subh">
-            <h5 class="p-3">Welcome Administrator!</h5>
+            <h5 class="p-3">Welcome <?php echo $adminName; ?>!</h5>
         </section>
 
         <section class="summary p-3">

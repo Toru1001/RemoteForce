@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2024 at 10:18 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: May 18, 2024 at 08:43 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -65,10 +65,14 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`emp_id`, `empl_firstname`, `empl_lastname`, `email`, `password`, `position`, `department_id`) VALUES
-(8, 'Administrator', '', 'ad.min', '$2y$10$Ls9j0p5ZdJzrMlaBSRtRJu21DEMVs5ymhumLQ9a5cwOc7RvP0QUwG', 'Administrator', 3),
-(11, 'Famira', 'Catalan', 'famcat@email.com', '$2y$10$tV7ZvuaxF/wJ0/sunVi5Wei41jMLXPFaxTohCYC6IH/XZr8rIwf9y', 'Employee', 6),
+(8, 'Administrator', '', 'admin', '$2y$10$Ls9j0p5ZdJzrMlaBSRtRJu21DEMVs5ymhumLQ9a5cwOc7RvP0QUwG', 'Administrator', 3),
+(11, 'Famira', 'Catalan', 'famcat@email.com', '$2y$10$Gd4US3XTXHm2krg0wRzxvOMHl2KGlJlAJQlh11hj12a.O0zWJ1Ghy', 'Employee', 6),
 (16, 'Princess', 'Caballeda', 'princess@gmail.com', '$2y$10$Fy7LBrlXWVn6SvodYPbeueRpWVlkUT/D3EAgNFUXNmWXWSmZrkjW.', 'Project Manager', 4),
-(23, 'Lance', 'Alcordo', 'lance@email.com', '$2y$10$Vcxeyo7OXV3zVrrUereOGOLaNaUvKMepI2q15QDmcpIiJ11/zGL02', 'Project Manager', 3);
+(23, 'Lance', 'Alcordo', 'lance@email.com', '$2y$10$Vcxeyo7OXV3zVrrUereOGOLaNaUvKMepI2q15QDmcpIiJ11/zGL02', 'Project Manager', 3),
+(26, 'Jonniel', 'Mirafuentes', 'jmirafuentes@email.com', '$2y$10$7XnpUa/DbCNhEMxtU1GmdOGAjnGJz.ovtFhtJARXZ0PV04XqULrou', 'Administrator', 6),
+(27, 'Rachelle', 'Cuizon', 'rachelle@email.com', '$2y$10$OjCD4ztRtVtoLPqv.ydycuPgmYL2Vet.0xySe5PawHv5cz2dWPDu.', 'Employee', 3),
+(28, 'JM', 'Macasabwang', 'jm@email.com', '$2y$10$WFyz8Z9/TpNUsfNItkO8b.cyYMLfIMWTsdVo9wnwBfoOMas0rVceO', 'Employee', 5),
+(29, 'Anna Mae', 'Bote', 'anna@email.com', '$2y$10$raNWl2UDvgE5q9I9QiVnJuLmb1RgySzThVgf3/PV3nOIVUKHjNHti', 'Project Manager', 1);
 
 -- --------------------------------------------------------
 
@@ -91,7 +95,10 @@ CREATE TABLE `productivitytracking` (
 --
 
 INSERT INTO `productivitytracking` (`tracking_id`, `task_id`, `emp_id`, `date`, `start_time`, `end_time`, `prod_description`) VALUES
-(7, 10, 8, '2024-05-18', '02:04:00', '03:04:00', 'PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiBzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sICZxdW90O1NlZ29lIFVJJnF1b3Q7LCBSb2JvdG8sICZxdW90O0hlbHZldGljYSBOZXVlJnF1b3Q7LCBBcmlhbCwgJnF1b3Q7Tm90byBTYW5zJnF1b3Q7LCAmcXVvdDtMaWJlcmF0aW9uIFNhbnMmcXVvdDssIHNhbnMtc2VyaWYsICZxdW90O0FwcGxlIENvbG9yIEVtb2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90OywgJnF1b3Q7U2Vnb2UgVUkgU3ltYm9sJnF1b3Q7LCAmcXVvdDtOb3RvIENvbG9yIEVtb2ppJnF1b3Q7OyI+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQuIFF1aSBub2JpcyBkb2xvcmVtIGF1dCBvZGl0IG1pbnVzIGlkIHF1YWVyYXQgdG90YW0gdXQgcXVhZSBxdW9kIHF1byBhZGlwaXNjaSBsaWJlcm8gdXQgbmVxdWUgc3VudC4gRWEgYmxhbmRpdGlpcyBtb2xlc3RpYWUgZXVtIHJlcnVtIHNhZXBlIGEgcXVhc2kgZXhjZXB0dXJpIGVzdCBlc3NlIGZhY2VyZS4gU2VkIHZvbHVwdGF0ZW0gZmFjZXJlIHZlbCBhbmltaSBlc3NlIGVvcyBleHBsaWNhYm8gbmVzY2l1bnQuIFF1aSBlaXVzIG1heGltZSBub24gb21uaXMgZnVnYSB1dCBhbGlhcyBibGFuZGl0aWlzIGV0Jm5ic3A7PC9zcGFuPjx1IHN0eWxlPSJmb250LWZhbWlseTogc3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCAmcXVvdDtTZWdvZSBVSSZxdW90OywgUm9ib3RvLCAmcXVvdDtIZWx2ZXRpY2EgTmV1ZSZxdW90OywgQXJpYWwsICZxdW90O05vdG8gU2FucyZxdW90OywgJnF1b3Q7TGliZXJhdGlvbiBTYW5zJnF1b3Q7LCBzYW5zLXNlcmlmLCAmcXVvdDtBcHBsZSBDb2xvciBFbW9qaSZxdW90OywgJnF1b3Q7U2Vnb2UgVUkgRW1vamkmcXVvdDssICZxdW90O1NlZ29lIFVJIFN5bWJvbCZxdW90OywgJnF1b3Q7Tm90byBDb2xvciBFbW9qaSZxdW90OzsiPjxpPnZvbHVwdGF0ZW0gcXVhZXJhdCBlb3MgcXVhbSBpbGxvIHNpdCBhcGVyaWFtIFF1aXMuPC9pPjwvdT4=');
+(8, 19, 8, '2024-05-18', '02:36:00', '07:36:00', 'TWFkZSB0aGUgVEVTVCE='),
+(9, 22, 8, '2024-05-18', '02:37:00', '06:37:00', 'U29ycnkgZm9yIHRoZSBQQVNUX0RVRSE='),
+(10, 23, 8, '2024-05-18', '12:38:00', '14:39:00', 'RG9uZSB3aXRoIHRoaXMh'),
+(11, 24, 8, '2024-05-16', '02:41:00', '07:41:00', 'SXQncyBva2F5IG5vdyE=');
 
 -- --------------------------------------------------------
 
@@ -114,8 +121,9 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`project_id`, `project_name`, `start_date`, `end_date`, `project_manager`, `project_status`, `proj_description`) VALUES
-(13, 'Create Database', '2024-05-15', '2024-06-13', 16, 'Active', 'PHAgc3R5bGU9ImNvbG9yOiByZ2IoMzMsIDM3LCA0MSk7IGZvbnQtZmFtaWx5OiBzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sICZxdW90O1NlZ29lIFVJJnF1b3Q7LCBSb2JvdG8sICZxdW90O0hlbHZldGljYSBOZXVlJnF1b3Q7LCBBcmlhbCwgJnF1b3Q7Tm90byBTYW5zJnF1b3Q7LCAmcXVvdDtMaWJlcmF0aW9uIFNhbnMmcXVvdDssIHNhbnMtc2VyaWYsICZxdW90O0FwcGxlIENvbG9yIEVtb2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90OywgJnF1b3Q7U2Vnb2UgVUkgU3ltYm9sJnF1b3Q7LCAmcXVvdDtOb3RvIENvbG9yIEVtb2ppJnF1b3Q7OyI+TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQuIFF1aSBub2JpcyBkb2xvcmVtIGF1dCBvZGl0IG1pbnVzIGlkIHF1YWVyYXQgdG90YW0gdXQgcXVhZSBxdW9kIHF1byBhZGlwaXNjaSBsaWJlcm8gdXQgbmVxdWUgc3VudC4gRWEgYmxhbmRpdGlpcyBtb2xlc3RpYWUgZXVtIHJlcnVtIHNhZXBlIGEgcXVhc2kgZXhjZXB0dXJpIGVzdCBlc3NlIGZhY2VyZS4gU2VkIHZvbHVwdGF0ZW0gZmFjZXJlIHZlbCBhbmltaSBlc3NlIGVvcyBleHBsaWNhYm8gbmVzY2l1bnQuIFF1aSBlaXVzIG1heGltZSBub24gb21uaXMgZnVnYSB1dCBhbGlhcyBibGFuZGl0aWlzIGV0IDx1PjxpPnZvbHVwdGF0ZW0gcXVhZXJhdCBlb3MgcXVhbSBpbGxvIHNpdCBhcGVyaWFtIFF1aXMuPC9pPjwvdT48L3A+PHAgc3R5bGU9ImNvbG9yOiByZ2IoMzMsIDM3LCA0MSk7IGZvbnQtZmFtaWx5OiBzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sICZxdW90O1NlZ29lIFVJJnF1b3Q7LCBSb2JvdG8sICZxdW90O0hlbHZldGljYSBOZXVlJnF1b3Q7LCBBcmlhbCwgJnF1b3Q7Tm90byBTYW5zJnF1b3Q7LCAmcXVvdDtMaWJlcmF0aW9uIFNhbnMmcXVvdDssIHNhbnMtc2VyaWYsICZxdW90O0FwcGxlIENvbG9yIEVtb2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90OywgJnF1b3Q7U2Vnb2UgVUkgU3ltYm9sJnF1b3Q7LCAmcXVvdDtOb3RvIENvbG9yIEVtb2ppJnF1b3Q7OyI+PGI+MzMgZWFydW0gbWF4aW1lIG5vbiBzdW50IG1pbmltYSBlc3QgY3VtcXVlIHF1aWEgZXN0IGFuaW1pIG9tbmlzIEF0IGFyY2hpdGVjdG8gbmVzY2l1bnQgZXQgaXBzYW0gcmVwZWxsZW5kdXM/IFF1aSByZXBlbGxhdCBzaW50IHNpdCBpbmNpZHVudCB2b2x1cHRhdGVtIG5vbiBlbmltIHZvbHVwdGF0dW0uIEVzdCBldmVuaWV0IHF1YW0gZXVtIHN1c2NpcGl0IGRlbGVuaXRpIHNpdCBxdWlzIGNvbW1vZGkgcXVpIGJlYXRhZSBnYWxpc3VtIDMzIGVsaWdlbmRpIGZ1Z2l0IHV0IHZlbmlhbSBzZXF1aSBxdWkgZ2FsaXN1bSBhdHF1ZSE8L2I+PC9wPjxwIHN0eWxlPSJjb2xvcjogcmdiKDMzLCAzNywgNDEpOyBmb250LWZhbWlseTogc3lzdGVtLXVpLCAtYXBwbGUtc3lzdGVtLCAmcXVvdDtTZWdvZSBVSSZxdW90OywgUm9ib3RvLCAmcXVvdDtIZWx2ZXRpY2EgTmV1ZSZxdW90OywgQXJpYWwsICZxdW90O05vdG8gU2FucyZxdW90OywgJnF1b3Q7TGliZXJhdGlvbiBTYW5zJnF1b3Q7LCBzYW5zLXNlcmlmLCAmcXVvdDtBcHBsZSBDb2xvciBFbW9qaSZxdW90OywgJnF1b3Q7U2Vnb2UgVUkgRW1vamkmcXVvdDssICZxdW90O1NlZ29lIFVJIFN5bWJvbCZxdW90OywgJnF1b3Q7Tm90byBDb2xvciBFbW9qaSZxdW90OzsiPkV0IGxhYm9yaW9zYW0gZmFjaWxpcyBlYSBwb3NzaW11cyBkaXN0aW5jdGlvIGVvcyBvZGlvIGluY2lkdW50IGV0IGFzc3VtZW5kYSBoYXJ1bS4gRXQgaXVyZSBxdWFzaSBhZCBkb2xvciBhY2N1c2FtdXMgc2l0IGNvcnJ1cHRpIGZ1Z2l0IGV0IGF0cXVlIHBvcnJvIHZlbCBuZWNlc3NpdGF0aWJ1cyBpbnRlcm5vcyBzZWQgb2RpbyBhc3Blcm5hdHVyIHV0IGxhYm9yZSBvZGl0LiBTaXQgZG9sb3JlbXF1ZSBmYWNlcmUgc2VkIGRvbG9yaWJ1cyBjb3Jwb3JpcyBzZWQgcXVpYnVzZGFtIFF1aXMuPC9wPg=='),
-(16, 'Hash Map Test', '2024-05-15', '2024-05-15', 23, 'Active', 'TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIDxiPmFkaXBpc2NpbmcgZWxpdDwvYj4sIHNlZCBkbyA8dT5laXVzbW9kIHRlbXBvciBpbmNpZGlkdW50IHV0IGxhYm9yZSBldDwvdT4gPGk+ZG9sb3JlIG1hZ25hIGFsaXF1YTwvaT4uIFV0IGVuaW0gYWQgbWluaW0gdmVuaWFtLCBxdWlzIG5vc3RydWQgZXhlcmNpdGF0aW9uIHVsbGFtY28gbGFib3JpcyA=');
+(21, 'Create a DATABASE ORIENTED SYSTEM!', '2024-05-18', '2024-05-30', 16, 'Active', 'PGRpdj5Mb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCwgYWxpYSBoYWJlbyBmZXVnaWF0IHNlZCBpbiwgbmUgbmVjIGltcGVkaXQgc2ltaWxpcXVlIGV4cGV0ZW5kaXMuIE5vdnVtIG9wdGlvbiBtbmVzYXJjaHVtIGVzdCBpZC4gQ2xpdGEgYXRvbW9ydW0gZW9zIGFuLCBhdCBkb2xvcmVzIGVsYWJvcmFyZXQgdXN1LiBWaXMgaW4gbmF0dW0gbmVtb3JlLCBmdWdpdCBwdXRhbnQgYXBwZXRlcmUgZXQgZXN0LiBFdCB1c3UgYWNjdXNhbXVzIHNlbnRlbnRpYWUsIGN1IHNlZCB2aWRpc3NlIHZvbHVwdHVhLiBIaXMgbmUgZGViaXRpcyBzaWduaWZlcnVtcXVlLCBub3N0ZXIgZG9jZW5kaSBmaWVyZW50IGF0IHF1aS48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LXdlaWdodDogYm9sZGVyOyI+PHU+PGk+PGJyPjwvaT48L3U+PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OiBib2xkZXI7Ij48dT48aT5TdWF2aXRhdGUgc2NyaXB0b3JlbSBldSBwZXIsIGl1cyBzdW1vIG1lZGlvY3JlbSBwZXJzZXF1ZXJpcyBuZSwgZGljYW0gcXVvZHNpIG1lYSBlaS4gVG9sbGl0IHByYWVzZW50IHJhdGlvbmlidXMgZXQgbmFtLiBUYXRpb24gZGljYW50IHNlbnRlbnRpYWUgcHJpIHRlLiBRdWFuZG8gdml0dXBlcmF0b3JpYnVzIGV4IHZpeCwgYWQgb21uaXMgdm9jZW50IG1lYSwgZXggZHVvIGRlbGVuaXQgb2ZmaWNpaXMgbGFib3JhbXVzLjwvaT48L3U+PC9zcGFuPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OiBib2xkZXI7Ij5FdCB2aW0gYWV0ZXJubyBhZGlwaXNjaSwgbXV0YXQgcGVydGluYXggcXVvIG5vLCB2aXMgbmUgbWFsaXMgZmFiZWxsYXMgZGVtb2NyaXR1bS4gTWFnbmEgYXRxdWkgcGVyY2lwaXR1ciBzaXQgbm8uIEVsaXRyIGRlZmluaXRpb25lcyBlc3QgZWkuIERvbG9yZSBtYWllc3RhdGlzIHNjcmlwc2VyaXQgbmUgcXVpLCB2aXggcXVvZCBkb2xvcmVtIG9mZmVuZGl0IHV0LiBObyBzZWQgdHJpdGFuaSBhZG1vZHVtIHRyYWN0YXRvcywgZWEgZGlzcHV0YW5kbyB0aGVvcGhyYXN0dXMgcHJpLjwvc3Bhbj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkVpIGVzdCBuaWJoIGFzc3VtIGVyYW50LCBjdSBldW0gbnVtcXVhbSB2dWxwdXRhdGUuIE1lYSBhdCBjb21tb2RvIGl1dmFyZXQgY29udmVuaXJlLiBNaW5pbSB2aXJpcyBwcmluY2lwZXMgY3UgbmFtLCBpZCBjdW0gdmVuaWFtIG9wdGlvbiB0b3JxdWF0b3MsIGRpY2FtIGZpZXJlbnQgZWZmaWNpZW5kaSBldCB2aXguIE1lYSBjdSB2aXZlbmR1bSBlbG9xdWVudGlhbSwgdG90YSBjbGl0YSBtZWxpdXMgaGlzIG5lLiBOb2x1aXNzZSBkZWxlY3R1cyBlaSBldW0sIGlsbHVkIGFsYnVjaXVzIGhhcyB1dC48L2Rpdj4='),
+(22, 'Create a PSEUDO CODE FOR OHTO SORTING', '2024-05-18', '2024-05-31', 23, 'Active', 'PGRpdj5Mb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCwgYWxpYSBoYWJlbyBmZXVnaWF0IHNlZCBpbiwgbmUgbmVjIGltcGVkaXQgc2ltaWxpcXVlIGV4cGV0ZW5kaXMuIE5vdnVtIG9wdGlvbiBtbmVzYXJjaHVtIGVzdCBpZC4gQ2xpdGEgYXRvbW9ydW0gZW9zIGFuLCBhdCBkPGI+PGk+b2xvcmVzIGVsYWJvcmFyZXQgdXN1LiBWaXMgaW4gbmF0dW0gbjwvaT48L2I+ZW1vcmUsIGZ1Z2l0IHB1dGFudCBhcHBldGVyZSBldCBlc3QuIEV0IHVzdSBhY2N1c2FtdXMgc2VudGVudGlhZSwgY3Ugc2VkIHZpZGlzc2Ugdm9sdXB0dWEuIEhpcyBuZSBkZWJpdGlzIHNpZ25pZmVydW1xdWUsIG5vc3RlciBkb2NlbmRpIGZpZXJlbnQgYXQgcXVpLjwvZGl2PjxkaXY+PGJyPjwvZGl2Pg=='),
+(23, 'LAST PROJECT!', '2024-05-18', '2024-05-20', 29, 'Active', 'PGRpdj5Mb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCwgYWxpYSBoYWJlbyBmZXVnaWF0IHNlZCBpbiwgbmUgbmVjIGltcGVkaXQgc2ltaWxpcXVlIGV4cGV0ZW5kaXMuIE5vdnVtIG9wdGlvbiBtbmVzYXJjaHVtIGVzdCBpZC4gQ2xpdGEgYXRvbW9ydW0gZW9zIGFuLCBhdCBkb2xvcmVzIGVsYWJvcmFyZXQgdXN1LiBWaXMgaW4gbmF0dW0gbmVtb3JlLCBmdWdpdCBwdXRhbnQgYXBwZXRlcmUgZXQgZXN0LiBFdCB1c3UgYWNjdXNhbXVzIHNlbnRlbnRpYWUsIGN1IHNlZCB2aWRpc3NlIHZvbHVwdHVhLiBIaXMgbmUgZGViaXRpcyBzaWduaWZlcnVtcXVlLCBub3N0ZXIgZG9jZW5kaSBmaWVyZW50IGF0IHF1aS48L2Rpdj48ZGl2PjxzcGFuIHN0eWxlPSJmb250LXdlaWdodDogYm9sZGVyOyI+PHU+PGk+PGJyPjwvaT48L3U+PC9zcGFuPjwvZGl2PjxkaXY+PHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OiBib2xkZXI7Ij48dT48aT5TdWF2aXRhdGUgc2NyaXB0b3JlbSBldSBwZXIsIGl1cyBzdW1vIG1lZGlvY3JlbSBwZXJzZXF1ZXJpcyBuZSwgZGljYW0gcXVvZHNpIG1lYSBlaS4gVG9sbGl0IHByYWVzZW50IHJhdGlvbmlidXMgZXQgbmFtLiBUYXRpb24gZGljYW50IHNlbnRlbnRpYWUgcHJpIHRlLiBRdWFuZG8gdml0dXBlcmF0b3JpYnVzIGV4IHZpeCwgYWQgb21uaXMgdm9jZW50IG1lYSwgZXggZHVvIGRlbGVuaXQgb2ZmaWNpaXMgbGFib3JhbXVzLjwvaT48L3U+PC9zcGFuPjwvZGl2Pg==');
 
 -- --------------------------------------------------------
 
@@ -133,9 +141,12 @@ CREATE TABLE `project_members` (
 --
 
 INSERT INTO `project_members` (`project_id`, `emp_id`) VALUES
-(13, 16),
-(16, 8),
-(16, 11);
+(21, 11),
+(21, 27),
+(21, 28),
+(22, 11),
+(23, 27),
+(23, 28);
 
 -- --------------------------------------------------------
 
@@ -159,11 +170,14 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`task_id`, `task_name`, `project_id`, `emp_id`, `priority`, `deadline`, `task_status`, `task_description`) VALUES
-(10, 'Make your own Coffee', 13, 8, 'Low', '2024-05-27', 'Completed', 'PHAgc3R5bGU9ImZvbnQtZmFtaWx5OiBzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sICZxdW90O1NlZ29lIFVJJnF1b3Q7LCBSb2JvdG8sICZxdW90O0hlbHZldGljYSBOZXVlJnF1b3Q7LCBBcmlhbCwgJnF1b3Q7Tm90byBTYW5zJnF1b3Q7LCAmcXVvdDtMaWJlcmF0aW9uIFNhbnMmcXVvdDssIHNhbnMtc2VyaWYsICZxdW90O0FwcGxlIENvbG9yIEVtb2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90OywgJnF1b3Q7U2Vnb2UgVUkgU3ltYm9sJnF1b3Q7LCAmcXVvdDtOb3RvIENvbG9yIEVtb2ppJnF1b3Q7OyI+PHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OiBib2xkZXI7Ij4zMyBlYXJ1bSBtYXhpbWUgbm9uIHN1bnQgbWluaW1hIGVzdCBjdW1xdWUgcXVpYSBlc3QgYW5pbWkgb21uaXMgQXQgYXJjaGl0ZWN0byBuZXNjaXVudCBldCBpcHNhbSByZXBlbGxlbmR1cz8gUXVpIHJlcGVsbGF0IHNpbnQgc2l0IGluY2lkdW50IHZvbHVwdGF0ZW0gbm9uIGVuaW0gdm9sdXB0YXR1bS4gRXN0IGV2ZW5pZXQgcXVhbSBldW0gc3VzY2lwaXQgZGVsZW5pdGkgc2l0IHF1aXMgY29tbW9kaSBxdWkgYmVhdGFlIGdhbGlzdW0gMzMgZWxpZ2VuZGkgZnVnaXQgdXQgdmVuaWFtIHNlcXVpIHF1aSBnYWxpc3VtIGF0cXVlITwvc3Bhbj48L3A+PHAgc3R5bGU9ImZvbnQtZmFtaWx5OiBzeXN0ZW0tdWksIC1hcHBsZS1zeXN0ZW0sICZxdW90O1NlZ29lIFVJJnF1b3Q7LCBSb2JvdG8sICZxdW90O0hlbHZldGljYSBOZXVlJnF1b3Q7LCBBcmlhbCwgJnF1b3Q7Tm90byBTYW5zJnF1b3Q7LCAmcXVvdDtMaWJlcmF0aW9uIFNhbnMmcXVvdDssIHNhbnMtc2VyaWYsICZxdW90O0FwcGxlIENvbG9yIEVtb2ppJnF1b3Q7LCAmcXVvdDtTZWdvZSBVSSBFbW9qaSZxdW90OywgJnF1b3Q7U2Vnb2UgVUkgU3ltYm9sJnF1b3Q7LCAmcXVvdDtOb3RvIENvbG9yIEVtb2ppJnF1b3Q7OyI+RXQgbGFib3Jpb3NhbSBmYWNpbGlzIGVhIHBvc3NpbXVzIGRpc3RpbmN0aW8gZW9zIG9kaW8gaW5jaWR1bnQgZXQgYXNzdW1lbmRhIGhhcnVtLiBFdCBpdXJlIHF1YXNpIGFkIGRvbG9yIGFjY3VzYW11cyBzaXQgY29ycnVwdGkgZnVnaXQgZXQgYXRxdWUgcG9ycm8gdmVsIG5lY2Vzc2l0YXRpYnVzIGludGVybm9zIHNlZCBvZGlvIGFzcGVybmF0dXIgdXQgbGFib3JlIG9kaXQuIFNpdCBkb2xvcmVtcXVlIGZhY2VyZSBzZWQgZG9sb3JpYnVzIGNvcnBvcmlzIHNlZCBxdWlidXNkYW0gUXVpcy48L3A+'),
-(11, 'Another Task!', 13, 8, 'Medium', '2024-05-21', 'Pending', 'VGVzdCA8Yj5BR0FJTiE8L2I+'),
-(12, 'Another One', 13, 8, 'Low', '2024-05-22', 'Pending', 'PGI+VEVTVCBUSElTIEFMTCBUSEUgV0FZPC9iPg=='),
-(13, 'This task', 16, 8, 'Low', '2024-05-24', 'Pending', 'VGFzayBpcyBub3doZXJlIGNvbXBsZXRlZCBlbWU='),
-(14, 'Thanks', 16, 8, 'Medium', '2024-05-21', 'Completed', 'SGFpc3Q=');
+(18, 'New Task', 21, 8, 'Low', '2024-05-25', 'Pending', 'PGI+VGVzdCB0aGlzIG91dDwvYj4='),
+(19, 'Another Test', 21, 8, 'Medium', '2024-05-31', 'Pending', 'R3JlYXQgPHU+dGVzdGluZyA8aT5idXQgZ29vZCB0cnkhPC9pPjwvdT4='),
+(20, 'Make Over!', 21, 8, 'High', '2024-05-19', 'Pending', 'TWl4IFVwIQ=='),
+(21, 'Percentage test', 21, 8, 'Low', '2024-06-01', 'Completed', 'QWN0aW9ucyBzcGVhayBsb3VkZXIgdGhhbiB3b3Jkcy4='),
+(22, 'Odd', 21, 8, 'Low', '2024-05-15', 'Past-due', 'TWFrZSB0aGlzIEhBSEFBSC4='),
+(23, 'Test for task', 22, 8, 'Medium', '2024-05-18', 'Completed', 'VGVzdGluZw=='),
+(24, 'Task Making', 23, 8, 'High', '2024-05-18', 'Completed', 'VGVzdCBhbGwgdGhlIGNhc2VzIHBvc3NpYmxlLg=='),
+(25, 'Cease FIRE!', 23, 8, 'Medium', '2024-05-17', 'Past-due', 'TWFrZSB0aGlzIG92ZXIu');
 
 --
 -- Indexes for dumped tables
@@ -226,25 +240,25 @@ ALTER TABLE `departments`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `productivitytracking`
 --
 ALTER TABLE `productivitytracking`
-  MODIFY `tracking_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `tracking_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `project_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `project_id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- Constraints for dumped tables

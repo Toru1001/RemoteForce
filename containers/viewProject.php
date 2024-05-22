@@ -236,7 +236,7 @@ $stmt->close();
                                                             case 'Pending':
                                                                 $badgeClass = 'bg-warning';
                                                                 break;
-                                                            case 'Past-Due':
+                                                            case 'Past-due':
                                                                 $badgeClass = 'bg-danger';
                                                                 break;
                                                             default:
@@ -347,7 +347,7 @@ $stmt->close();
                     <button type="button" class="btn-close" data-bs dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="createTaskForm">
+                    <form id="createTaskForm" class="needs-validation">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -450,8 +450,10 @@ $stmt->close();
                             <p id="viewTaskPriority" class="mt-1"></p>
                             <h7 class="line"><strong> Status </strong></h7>
                             <p id="viewTaskStatus" class="mt-1"></p>
-                            <h7 class="line"><strong> Task Created by </strong></h7>
-                            <p id="viewTaskCreator" class="mt-1"></p>
+                            <h7 class="line mt-4"><strong> Task Created by </strong></h7>
+                            <div class="row-6">
+                                <p id="viewTaskCreator" class="member-pill mt-1"></p>
+                                </div>
                         </div>
                     </div>
                 </div>

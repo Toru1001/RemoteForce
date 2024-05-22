@@ -8,6 +8,25 @@ if (!isset($_SESSION['user_id'])) {
 
 $userId = $_SESSION['user_id'];
 
+include "dbConnect.php"; 
+
+function updatePastDueTasks($conn) {
+  $currentDate = date('Y-m-d');
+
+  $sqlUpdate = "UPDATE tasks SET task_status = 'Past-Due' WHERE deadline < '$currentDate' AND task_status = 'Pending'";
+  if (!mysqli_query($conn, $sqlUpdate)) {
+    echo "Error updating past-due tasks: " . mysqli_error($conn);
+  }
+}
+
+updatePastDueTasks($conn);
+
+$sqlAdmin = "SELECT empl_firstname, empl_lastname FROM employees WHERE position = 'Administrator'";
+$resultAdmin = mysqli_query($conn, $sqlAdmin);
+$rowAdmin = mysqli_fetch_assoc($resultAdmin);
+$adminName = $rowAdmin['empl_firstname'] . ' ' . $rowAdmin['empl_lastname'];
+
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +123,7 @@ $userId = $_SESSION['user_id'];
         <h1></h1>
         <span class="account p-3">
           <i class="lni lni-user"></i>
-          <span class="p-3">Administrator</span>
+          <span class="p-3"><?php echo $adminName?></span>
         </span>
       </div>
 

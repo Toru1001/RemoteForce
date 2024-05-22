@@ -193,3 +193,8 @@ a.sidebar-link:hover{
     bottom: 0;
     width: 100%;
   }
+
+  .logo{
+width: 60px;
+position: relative;
+  }

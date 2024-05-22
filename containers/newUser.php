@@ -20,13 +20,14 @@
     <div class="toast-body">
     </div>
   </div>
+
   <div class="body p-3">
     <section class="pageTitle p-3">
       <h1>Create New User</h1>
     </section>
     <div class="separator"></div>
 
-    <form id="userForm" class="row g-3 needs-validation p-5" novalidate>
+    <form id="userForm" class="row g-3 needs-validation p-5">
       <div class="col-md-6">
         <label for="validationTooltip01" class="form-label">First Name</label>
         <input type="text" class="form-control" id="validationTooltip01" name="firstname" required />
@@ -92,7 +93,7 @@
             $('.toast-body').html('You created a NEW USER!');
             $('.toast').toast('show');
             setTimeout(function () {
-              window.location.href = 'main.php';
+              window.location.href = 'main.php?page=employeeList';
             }, 1500);
           },
           error: function (xhr, status, error) {

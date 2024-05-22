@@ -7,19 +7,26 @@ if (isset($_POST['submit'])) {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $stmt = $conn->prepare("SELECT emp_id, password FROM employees WHERE email = ?");
+
+        // Prepare the statement to select user details
+        $stmt = $conn->prepare("SELECT emp_id, password, position FROM employees WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result();
 
         if ($stmt->num_rows == 1) {
-            $stmt->bind_result($emp_id, $hashed_password);
+            $stmt->bind_result($emp_id, $hashed_password, $position);
             $stmt->fetch();
 
+            // Verify the password
             if (password_verify($password, $hashed_password)) {
-                $_SESSION['user_id'] = $emp_id;
-                $userId = $_SESSION['user_id'];
-                header('Location: main.php');
+                // Check if the position is 'Administrator'
+                if ($position == 'Administrator') {
+                    $_SESSION['user_id'] = $emp_id;
+                    header('Location: main.php');
+                } else {
+                    $message['message'] = "Employee page not available.";
+                }
             } else {
                 $message['message'] = "Invalid email or password.";
             }
@@ -30,8 +37,9 @@ if (isset($_POST['submit'])) {
         $stmt->close();
         $conn->close();
     }
-
 }
+
+
 ?>
 
 

@@ -10,11 +10,30 @@
 </head>
 
 <body>
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000"
+    style="position: absolute; top: 0; right: 0;">
+    <div class="toast-header">
+      <strong class="me-auto">Remote Force</strong>
+      <small>Just now</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+    </div>
+  </div>
+
     <div class="body p-3">
         <section class="pageTitle1 p-3">
             <h2>Projects</h2>
         </section>
         <div class="separator"></div>
+
+        <nav class="navbar mt-2 mr-3">
+            <div class="container-fluid d-flex align-items-center space-in-between">
+                <div></div>
+                <button class="adbtn btn btn-outline-primary btn-sm mb-0" type="button"
+                    onclick="window.location.href='main.php?page=newProject'">+ New Project</button>
+            </div>
+        </nav>
 
         <section class="p-4">
             <div class="table-responsive">
@@ -202,8 +221,11 @@
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success) {
-                                    alert('Project deleted successfully');
-                                    location.reload();
+                                    $('.toast-body').html('You deleted a PROJECT!');
+                                    $('.toast').toast('show');
+                                    setTimeout(function () {
+                                    window.location.href = '/remoteforce/main.php?page=projects';
+                                    }, 1500);
                                 } else {
                                     alert('Error deleting project: ' + data.message);
                                 }
